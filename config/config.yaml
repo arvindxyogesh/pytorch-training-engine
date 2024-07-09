@@ -1,0 +1,35 @@
+training:
+  max_epochs: 100
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  device: cpu
+
+model:
+  type: cnn
+  n_classes: 10
+  dropout: 0.3
+
+callbacks:
+  early_stopping:
+    enabled: true
+    monitor: val_loss
+    patience: 10
+    mode: min
+  checkpoint:
+    enabled: true
+    monitor: val_loss
+    dirpath: ./checkpoints
+    mode: min
+  csv_logger:
+    enabled: true
+    filepath: ./training_log.csv
+
+data:
+  n_samples: 2000
+  n_classes: 10
+  seed: 42
+
+logging:
+  level: INFO
